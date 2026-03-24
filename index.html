@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyHub - Learn Better</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Auth Screen -->
+      <div class="auth-wrapper" id="auth-screen">
+        <div class="auth-hero">
+          <h1>StudyHub</h1>
+          <p>Your personal space to master skills, one session at a time.</p>
+          <ul>
+            <li>Structured courses curated for students</li>
+            <li>Track your daily and weekly progress</li>
+            <li>Learn anywhere, on any device</li>
+          </ul>
+        </div>
+        <div class="auth-card">
+          <div class="auth-toggle">
+            <button class="active" data-mode="login" id="login-tab">
+              Login
+            </button>
+            <button data-mode="signup" id="signup-tab">Sign Up</button>
+          </div>
+          <form id="auth-form">
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="●●●●●●●●"
+                required
+              />
+            </div>
+            <div class="auth-extra">
+              <label class="checkbox">
+                <input type="checkbox" id="remember" />
+                <span>Remember me</span>
+              </label>
+              <button type="button" class="link-btn">Forgot password?</button>
+            </div>
+            <button type="submit" class="primary-btn" id="auth-submit">
+              Login
+            </button>
+            <div class="divider">
+              <span>or</span>
+            </div>
+            <button type="button" class="google-btn" id="google-login">
+              <span class="google-icon">G</span>
+              <span>Continue with Google</span>
+            </button>
+          </form>
+          <p class="auth-footer-text">
+            By continuing, you agree to our
+            <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Dashboard Screen -->
+      <div class="dashboard" id="dashboard-screen" style="display: none">
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <div class="logo-circle">S</div>
+            <span class="logo-text">StudyHub</span>
+          </div>
+          <nav class="sidebar-nav">
+            <button class="nav-item active" data-section="home">
+              <span class="nav-icon">🏠</span>
+              <span>Home</span>
+            </button>
+            <button class="nav-item" data-section="my-courses">
+              <span class="nav-icon">📚</span>
+              <span>My Courses</span>
+            </button>
+            <button class="nav-item" data-section="progress">
+              <span class="nav-icon">📈</span>
+              <span>Progress</span>
+            </button>
+            <button class="nav-item" data-section="profile">
+              <span class="nav-icon">👤</span>
+              <span>Profile</span>
+            </button>
+          </nav>
+          <div class="sidebar-footer">
+            <div class="user-mini">
+              <div class="avatar">YS</div>
+              <div>
+                <p class="user-name">Student</p>
+                <p class="user-role">Learner</p>
+              </div>
+            </div>
+            <button class="ghost-btn" id="logout-btn">Logout</button>
+          </div>
+        </aside>
+
+        <main class="main">
+          <header class="main-header">
+            <div>
+              <h2 id="main-title">Welcome back 👋</h2>
+              <p class="subtitle">Keep growing a little every day.</p>
+            </div>
+            <div class="header-actions">
+              <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search courses"
+                />
+              </div>
+              <button class="icon-btn" aria-label="Notifications">
+                🔔
+              </button>
+            </div>
+          </header>
+
+          <!-- HOME SECTION -->
+          <section id="home-section" class="main-section">
+            <section class="overview-cards">
+              <div class="stat-card">
+                <p class="stat-label">Total Courses</p>
+                <p class="stat-value" id="total-courses">10</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-label">Active Courses</p>
+                <p class="stat-value" id="active-courses">4</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-label">Average Progress</p>
+                <p class="stat-value" id="avg-progress">52%</p>
+              </div>
+            </section>
+
+            <section class="courses-section">
+              <div class="section-header">
+                <h3>Popular Courses</h3>
+                <div class="section-controls">
+                  <select id="filter-select">
+                    <option value="all">All</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                  </select>
+                </div>
+              </div>
+              <div class="courses-grid" id="courses-grid">
+                <!-- Course cards injected via JS -->
+              </div>
+            </section>
+          </section>
+
+          <!-- MY COURSES SECTION -->
+          <section id="my-courses-section" class="main-section hidden">
+            <section class="courses-section">
+              <div class="section-header">
+                <h3>My Courses</h3>
+                <p class="subtitle">Everything you have started so far.</p>
+              </div>
+              <div class="courses-grid" id="my-courses-grid">
+                <!-- My courses injected via JS -->
+              </div>
+            </section>
+          </section>
+
+          <!-- PROGRESS SECTION -->
+          <section id="progress-section" class="main-section hidden">
+            <section class="courses-section">
+              <div class="section-header">
+                <h3>Your Progress</h3>
+                <p class="subtitle">Snapshot of how you are doing.</p>
+              </div>
+              <div class="overview-cards" id="progress-overview">
+                <!-- Progress overview injected via JS -->
+              </div>
+            </section>
+          </section>
+
+          <!-- PROFILE SECTION -->
+          <section id="profile-section" class="main-section hidden">
+            <section class="courses-section">
+              <div class="section-header">
+                <h3>Profile</h3>
+                <p class="subtitle">Basic details about you.</p>
+              </div>
+              <form id="profile-form" class="profile-form">
+                <div class="field">
+                  <label for="profile-name">Full name</label>
+                  <input
+                    type="text"
+                    id="profile-name"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div class="field">
+                  <label for="profile-email">Email</label>
+                  <input
+                    type="email"
+                    id="profile-email"
+                    placeholder="you@example.com"
+                  />
+                </div>
+                <div class="field">
+                  <label for="profile-goal">Study goal</label>
+                  <input
+                    type="text"
+                    id="profile-goal"
+                    placeholder="e.g. Crack placement interviews"
+                  />
+                </div>
+                <button type="submit" class="primary-btn">
+                  Save Profile
+                </button>
+              </form>
+            </section>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
